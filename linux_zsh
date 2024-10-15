@@ -1,0 +1,14 @@
+#!/bin/bash
+echo "Initializing configuration"
+
+sudo apt update
+sudo apt install zsh
+
+chsh -s $(which zsh)
+sudo apt install wget
+mkdir -p ~/.local/share/fonts
+wget https://github.com/ryanoasis/nerd-fonts/raw/refs/heads/master/patched-fonts/FiraCode/SemiBold/FiraCodeNerdFontMono-SemiBold.ttf -P ~/.local/share/fonts
+sudo apt install git
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+sed -i 's/ZSH_THEME="[^"]*/ZSH_THEME="powerlevel10k\/powerlevel10k/g' .zshrc
+p10k configure
